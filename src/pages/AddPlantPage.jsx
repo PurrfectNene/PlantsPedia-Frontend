@@ -36,49 +36,49 @@ function AddPlantPage() {
         <div className="d-flex flex-column mb-3">
           <label className="form-label row">
            <h3>Name</h3> 
-            <input type="text" placeholder="Name" onChange={(e) => setName(e.target.value)} />
+            <input type="text" className="custom-input" placeholder="What's my name?" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setName(e.target.value)} />
           </label>
         </div>
 
         <div className="d-flex flex-column mb-3">
           <label className="form-label row">
             <h3>Latin Name</h3>
-            <input type="text" placeholder="Latin name" onChange={(e) => setLatin(e.target.value)} />
+            <input type="text" className="custom-input" placeholder="What's my name in Latin?" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setLatin(e.target.value)} />
           </label>
         </div>
 
         <div className="d-flex flex-column mb-3">
           <label className="form-label row">
             <h3>Description</h3>
-            <input type="text" placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
+            <input type="text" className="custom-input" placeholder="Describe me!" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setDescription(e.target.value)} />
           </label>
         </div>
 
         <div className="d-flex flex-column mb-3">
         <label className="form-label row">
           <h3>Care Details</h3>
-          <input type="text" placeholder="Care Details" onChange={(e) => setCare(e.target.value)} />
+          <input type="text" className="custom-input" placeholder="How should you take care of me?" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setCare(e.target.value)} />
         </label>
         </div>
 
         <div className="d-flex flex-column mb-3">
           <label className="form-label row">
             <h3>Origin</h3>
-            <input type="text" placeholder="Origin" onChange={(e) => setOrigin(e.target.value)}/>
+            <input type="text" className="custom-input" placeholder="Where am I from?" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setOrigin(e.target.value)}/>
           </label>
         </div>
 
         <div className="d-flex flex-column mb-3">
         <label className="form-label row">
           <h3>Add an image</h3>
-          <input type="text" onChange={(e) => setImage(e.target.value)} />
+          <input type="text" className="custom-input" placeholder="Add an image that best portrays me" style={{borderRadius: '10px', border: 'none'}} onChange={(e)=>setImage(e.target.value)} />
         </label>
         </div>
 
         <div className="d-flex flex-column mb-3">
         <h3>Outdoor or Indoor?</h3>
-          <select className="form-select row" onChange={(e) => setIndoor(e.target.value)}>
-            <option selected>Outdoor or Indoor</option>
+          <select className="form-select row custom-input" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setIndoor(e.target.value)}>
+            <option selected>Should I live indoors or outdoors?</option>
             <option value="1">Indoor</option>
             <option value="2">Outdoor</option>
             <option value="3">Both</option>

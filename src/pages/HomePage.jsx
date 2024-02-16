@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import homePageImage from '../assets/homepage-cover-image.jpeg'
-import housePlantImage1 from '../assets/houseplant-card-1.jpeg'
-import housePlantImage2 from '../assets/houseplant-card-2.jpeg'
+
 
 function HomePage() {
   return (
@@ -26,7 +25,7 @@ function HomePage() {
           </div>
 
           <div className="col-md-4 mx-4 mb-5 card pt-4" style={{backgroundColor: '#EACCA6', border: "none"}} >
-            <Link to="plants/create"><h2 className="text-center fs-1" style={{color: "#214624"}}>Add a New Plant</h2></Link>
+            <Link to="plants/create"><h2 className="text-center fs-1 no-underline" style={{color: "#214624"}}>Add a New Plant</h2></Link>
             <p className="text-center fs-2 m-4" style={{color: '#A8A39D'}} >Can't spot your favorite? Grow our collection by adding it.</p>
           </div>
         </div>
