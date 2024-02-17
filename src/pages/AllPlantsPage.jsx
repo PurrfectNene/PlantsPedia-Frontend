@@ -27,7 +27,7 @@ function AllPlantsPage() {
             
             <div className="col mb-4" key={onePlant.id}>
               <div className="card square-card h-100">
-              <Link to={`/projects/${onePlant.id}`}>
+              <Link to={`/plants/${onePlant.id}`}>
                 <img src={onePlant.image} className="card-img-top img-fluid" alt={onePlant.name} style={{ height: "600px", objectFit: "cover" }} />
               </Link>
                 <div className="card-body">
