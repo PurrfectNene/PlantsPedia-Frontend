@@ -37,6 +37,6 @@ function AllPlantsPage() {
       </div>
     </div>
   );
-}
+  }
 
 export default AllPlantsPage;
