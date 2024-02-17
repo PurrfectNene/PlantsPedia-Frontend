@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "../AllPlantsPage.css"
 
 function AllPlantsPage() {
   const [plants, setplants] = useState([]);
@@ -18,16 +19,22 @@ function AllPlantsPage() {
   }, []);
 
   return (
-    <div>
-      {plants.map((onePlant) => {
-        
-        return (
-        <div className="card container" style={{ width: '50%', height:'auto' }} key={onePlant.id}>
-          <img style={{ width: '100%' }} src={onePlant.image} />
-          <h3>{onePlant.name}</h3>
+    <div className="vh-100 vw-100">
+      <div className="container-fluid">
+        <h1 className="text-center">Plants list</h1>
+        <div className="row row-cols-1 row-cols-md-3 g-6 mb-4">
+          {plants.map((onePlant) => (
+            <div className="col mb-4" key={onePlant.id}>
+              <div className="card square-card h-100">
+                <img src={onePlant.image} className="card-img-top img-fluid" alt={onePlant.name} style={{ height: "600px", objectFit: "cover" }} />
+                <div className="card-body">
+                  <h2 className="card-title text-center">{onePlant.name}</h2>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-        )
-      })}
+      </div>
     </div>
   );
 }
