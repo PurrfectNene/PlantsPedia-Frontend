@@ -3,3 +3,13 @@
 div {
     font-family: "Be Vietnam Pro", "Inter", system-ui, sans;
 }
+
+a {
+    text-decoration: none;
+}
+
+.custom-input {
+    height: 50px;
+}
+
+
