@@ -19,9 +19,7 @@ function PlantDetailsPage() {
   }, [plantId])
 
 
-
   const navigate = useNavigate()
-//Continue on this function
 
   function deletePlant(){
     axios.delete(`http://localhost:5005/plants/${plantId}`)
@@ -36,6 +34,13 @@ function PlantDetailsPage() {
 
 
 
+  function deletePlant(){
+    axios.get(`http://localhost:5005/plants/${plantId}`)
+    .then(()=>{})
+    .catch(()=>{})
+  }
+  
+  
   return (
     <div>
       {!plant && <p>Loading...</p>}
