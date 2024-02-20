@@ -90,7 +90,7 @@ function AddPlantPage() {
           <div className="container-fluid d-flex justify-content-center">
             <div className="row d-flex ">
               <div className="col">
-                <button className="m-4 ">Add Plant</button>
+                <button className="p-3 m-5 btn btn-outline-dark">Add Plant</button>
               </div>
             </div>
           </div>

@@ -29,7 +29,7 @@ function HomePage() {
 
       <div className="container-fluid text-center p-5">
         <h2 style={{fontSize: '2rem', color: '#474443'}}>Don't see your favourite plant in our catalogue?</h2>
-        <Link to="plants/create"><button className="p-3 m-3 btn btn-outline-dark" style={{color: '#474443'}}>Add a new plant</button></Link>
+        <Link to="plants/create"><button className="p-3 m-3 btn btn-outline-dark">Add a new plant</button></Link>
       </div>
 
       <div>
