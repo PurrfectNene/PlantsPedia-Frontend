@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
  
 
@@ -18,12 +18,29 @@ function PlantDetailsPage() {
     })
   }, [plantId])
 
+
+  const navigate = useNavigate()
+
+  function deletePlant(){
+    axios.delete(`http://localhost:5005/plants/${plantId}`)
+    .then(()=>{
+      navigate('/plants')
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
+
+
+
+
   function deletePlant(){
     axios.get(`http://localhost:5005/plants/${plantId}`)
     .then(()=>{})
     .catch(()=>{})
   }
-
+  
+  
   return (
     <div>
       {!plant && <p>Loading...</p>}
@@ -52,7 +69,7 @@ function PlantDetailsPage() {
               </div>
               <div className='d-flex justify-content-center'>
                 <button className="m-3">Edit me</button>
-                <button className="m-3">Delete me</button>
+                <button className="m-3" onClick={deletePlant}>Delete me</button>
               </div>
             </div>
         </div>

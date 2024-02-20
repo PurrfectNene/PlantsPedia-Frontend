@@ -14,7 +14,7 @@ function AllPlantsPage() {
         console.log(plantsFromAPI.data);
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
       });
   }, []);
 
