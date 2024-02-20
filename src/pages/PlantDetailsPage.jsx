@@ -32,15 +32,6 @@ function PlantDetailsPage() {
   }
 
 
-
-
-  function deletePlant(){
-    axios.get(`http://localhost:5005/plants/${plantId}`)
-    .then(()=>{})
-    .catch(()=>{})
-  }
-  
-  
   return (
     <div>
       {!plant && <p>Loading...</p>}
