@@ -6,6 +6,7 @@ import PlantDetailsPage from './pages/PlantDetailsPage'
 import AddPlantPage from './pages/AddPlantPage'
 import Navbar from './components/Navbar'
 import TopPlantPicks from './components/TopPlantPicks'
+import Footer from './components/Footer'
 
 function App() {
 
@@ -19,6 +20,8 @@ function App() {
       <Route path="/plants/:plantId" element={<PlantDetailsPage/>}></Route>
       <Route path="/plants/create" element={<AddPlantPage/>}></Route>
     </Routes>
+
+    <Footer/>
     </>
   )
 }
