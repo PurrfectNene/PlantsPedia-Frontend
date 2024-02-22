@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import "../AllPlantsPage.css"
 
 function AllPlantsPage() {
-  const [plants, setplants] = useState([]);
+  const [plants, setPlants] = useState([]);
 
   useEffect(() => {
     axios
       .get(`http://localhost:5005/plants`)
       .then((plantsFromAPI) => {
-        setplants(plantsFromAPI.data)
+        setPlants(plantsFromAPI.data)
         console.log(plantsFromAPI.data);
       })
       .catch((err) => {
@@ -18,11 +18,106 @@ function AllPlantsPage() {
       });
   }, []);
 
+  function sortAlphabetically () {
+    axios.get(`http://localhost:5005/plants?_sort=name`)
+    .then((response) => {
+      setPlants(response.data)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
+
+  function sortUnalphabetically () {
+    axios.get(`http://localhost:5005/plants?_sort=name&_order=desc`)
+    .then((response) => {
+      setPlants(response.data)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
+
+  function filterIndoors () {
+    axios.get(`http://localhost:5005/plants?outdoor_or_indoor=Indoor`)
+    .then((response) => {
+      setPlants(response.data)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
+
+  function filterOutdoor () {
+    axios.get(`http://localhost:5005/plants?outdoor_or_indoor=Outdoor`)
+    .then((response) => {
+      setPlants(response.data)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
+
+  function filterBoth () {
+    axios.get(`http://localhost:5005/plants?outdoor_or_indoor=Outdoor/Indoor`)
+    .then((response) => {
+      setPlants(response.data)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
+
+  function clearFilters(){
+    axios.get(`http://localhost:5005/plants`)
+    .then((response)=>{
+      setPlants(response.data)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
+
+
   return (
     <div className="vh-100 vw-100">
       <div className="container-fluid">
-        <h1 className="text-center">Plants list</h1>
-        <div className="row row-cols-1 row-cols-md-3 g-6 mb-4">
+        
+        <h1 className="text-center m-4">Plants list</h1>
+          <div className="container-fluid mb-4">
+            <div className="row">
+              <div className="col-1">
+                <div className="dropdown">
+              <button className="btn btn-outline-dark dropdown-toggle " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort
+              </button>
+              <ul className="dropdown-menu">
+                <li><a className="dropdown-item" href="#" onClick={sortAlphabetically}>A-Z</a></li>
+                <li><a className="dropdown-item" href="#" onClick={sortUnalphabetically}>Z-A</a></li>
+              </ul>
+              </div>
+            </div>
+            <div className="col-1">
+            <div className="dropdown">
+              <button className="btn btn-outline-dark dropdown-toggle " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Indoor or Outdoor
+              </button>
+              <ul className="dropdown-menu">
+                <li><a className="dropdown-item" href="#" onClick={filterIndoors}>Indoor Only</a></li>
+                <li><a className="dropdown-item" href="#" onClick={filterOutdoor}>Outdoor Only</a></li>
+                <li><a className="dropdown-item" href="#" onClick={filterBoth}>Indoor and Outdoor</a></li>
+              </ul>
+            </div>
+            </div>
+            <div className="col text-end">
+              <button className="btn btn-outline-dark" onClick={clearFilters}>Clear All</button>
+            </div>
+          </div>
+        </div>
+        
+
+          <div className="row row-cols-1 row-cols-md-3 g-6 mb-4">
           {plants.map((onePlant) => (
             
             <div className="col mb-4" key={onePlant.id}>
