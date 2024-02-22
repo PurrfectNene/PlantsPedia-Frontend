@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
  
 
@@ -59,7 +59,9 @@ function PlantDetailsPage() {
                 <p>{plant.outdoor_or_indoor}</p>
               </div>
               <div className='d-flex justify-content-center'>
+                <Link to={`/plants/${plant.id}/edit`}>
                 <button className="m-3">Edit me</button>
+                </Link>
                 <button className="m-3" onClick={deletePlant}>Delete me</button>
               </div>
             </div>

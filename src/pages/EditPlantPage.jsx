@@ -1,11 +1,11 @@
-import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+useNavigate
 
 
-function AddPlantPage() {
 
+function EditPlantPage() {
   const [name, setName] = useState('')
   const [latin, setLatin] = useState('')
   const [description, setDescription] = useState('')
@@ -14,28 +14,31 @@ function AddPlantPage() {
   const [image, setImage] = useState('')
   const [indoor, setIndoorOutdoor] = useState('')
 
+  const {plantId} = useParams()
 
   const navigate = useNavigate()
 
-  function handleSubmit(e){
-    e.preventDefault()
-    const newPlant = {name:name,latin_name:latin,description:description,care_detail:care,origin:origin,image:image,outdoor_or_indoor:indoor}
-    axios.post(`http://localhost:5005/plants`, newPlant)
-    .then((response) => {
-      console.log(response.data)
-      navigate(`/plants/${response.data.id}/`)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-  }
+    function handleSubmit(e){
+        e.preventDefault()
+
+        let editPlants = {name:name,latin_name:latin,description:description,care_detail:care,origin:origin,image:image,outdoor_or_indoor:indoor}
+
+        axios.put(`http://localhost:5005/plants/${plantId}`, editPlants)
+        .then((updatedPlantsFromAPI) => {
+            navigate(`/plants/${updatedPlantsFromAPI.data.id}/`)
+            console.log(updatedPlantsFromAPI.data.id)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
 
 
   return (
     <div className='vw-100 d-flex justify-content-center' style={{color:'#474443', backgroundColor: '#E2E2E2'}} >
       <div className='row' >
         <div className='p-4'>
-          <h1 className="text-center" style={{fontSize:'3rem'}}>ADD A NEW PLANT</h1>
+          <h1 className="text-center" style={{fontSize:'3rem'}}>EDIT PLANT DETAILS</h1>
         </div>
   
       <div className='col'>
@@ -85,18 +88,18 @@ function AddPlantPage() {
 
           <div className="container-fluid col-md-10 col-sm-10 px-5">
           <h3 className="mt-4">Outdoor or Indoor?</h3>
-          <select className="form-select row custom-input" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setIndoorOutdoor(e.target.value)}>
+            <select className="form-select row custom-input" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setIndoorOutdoor(e.target.value)}>
               <option selected>Should I live indoors or outdoors?</option>
-              <option value="Indoor">Indoor</option>
-              <option value="Outdoor">Outdoor</option>
-              <option value="Outdoor/Indoor">Outdoor/Indoor</option>
-          </select>
+              <option value="1">Indoor</option>
+              <option value="2">Outdoor</option>
+              <option value="3">Outdoor/Indoor</option>
+            </select>
           </div>
           
           <div className="container-fluid d-flex justify-content-center">
             <div className="row d-flex ">
               <div className="col">
-                <button className="p-3 m-5 btn btn-outline-dark">Add Plant</button>
+                <button className="p-3 m-5 btn btn-outline-dark">Edit</button>
               </div>
             </div>
           </div>
@@ -107,4 +110,4 @@ function AddPlantPage() {
   )
 }
 
-export default AddPlantPage
+export default EditPlantPage
