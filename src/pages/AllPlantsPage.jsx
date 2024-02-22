@@ -5,68 +5,28 @@ import "../AllPlantsPage.css"
 
 function AllPlantsPage() {
   const [plants, setPlants] = useState([]);
+  const [indoor, setIndoor] = useState('')
+  const [alphabetical, setAlphabetical] = useState('asc')
+
 
   useEffect(() => {
+    const params = new URLSearchParams()
+    params.append('_order', alphabetical)
+    if (indoor) {
+      params.append('outdoor_or_indoor', indoor)
+    }
+    
     axios
-      .get(`http://localhost:5005/plants`)
+      .get(`http://localhost:5005/plants/?_sort=name&${params.toString()}`)
       .then((plantsFromAPI) => {
         setPlants(plantsFromAPI.data)
-        console.log(plantsFromAPI.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [indoor, alphabetical]);
 
-  function sortAlphabetically () {
-    axios.get(`http://localhost:5005/plants?_sort=name`)
-    .then((response) => {
-      setPlants(response.data)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-  }
 
-  function sortUnalphabetically () {
-    axios.get(`http://localhost:5005/plants?_sort=name&_order=desc`)
-    .then((response) => {
-      setPlants(response.data)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-  }
-
-  function filterIndoors () {
-    axios.get(`http://localhost:5005/plants?outdoor_or_indoor=Indoor`)
-    .then((response) => {
-      setPlants(response.data)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-  }
-
-  function filterOutdoor () {
-    axios.get(`http://localhost:5005/plants?outdoor_or_indoor=Outdoor`)
-    .then((response) => {
-      setPlants(response.data)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-  }
-
-  function filterBoth () {
-    axios.get(`http://localhost:5005/plants?outdoor_or_indoor=Outdoor/Indoor`)
-    .then((response) => {
-      setPlants(response.data)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-  }
 
   function clearFilters(){
     axios.get(`http://localhost:5005/plants`)
@@ -93,8 +53,8 @@ function AllPlantsPage() {
                 Sort
               </button>
               <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#" onClick={sortAlphabetically}>A-Z</a></li>
-                <li><a className="dropdown-item" href="#" onClick={sortUnalphabetically}>Z-A</a></li>
+                <li><a className="dropdown-item" onClick={() => setAlphabetical('asc')}>A-Z</a></li>
+                <li><a className="dropdown-item" onClick={() => setAlphabetical('desc')}>Z-A</a></li>
               </ul>
               </div>
             </div>
@@ -104,9 +64,9 @@ function AllPlantsPage() {
                 Indoor or Outdoor
               </button>
               <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#" onClick={filterIndoors}>Indoor Only</a></li>
-                <li><a className="dropdown-item" href="#" onClick={filterOutdoor}>Outdoor Only</a></li>
-                <li><a className="dropdown-item" href="#" onClick={filterBoth}>Indoor and Outdoor</a></li>
+                <li><a className="dropdown-item" onClick={() => setIndoor('Indoor')}>Indoor Only</a></li>
+                <li><a className="dropdown-item" onClick={() => setIndoor('Outdoor')}>Outdoor Only</a></li>
+                <li><a className="dropdown-item" onClick={() => setIndoor('')}>Indoor and Outdoor</a></li>
               </ul>
             </div>
             </div>
