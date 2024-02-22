@@ -4,25 +4,80 @@ import { Link } from "react-router-dom";
 import "../AllPlantsPage.css"
 
 function AllPlantsPage() {
-  const [plants, setplants] = useState([]);
+  const [plants, setPlants] = useState([]);
+  const [indoor, setIndoor] = useState('')
+  const [alphabetical, setAlphabetical] = useState('asc')
+
 
   useEffect(() => {
+    const params = new URLSearchParams()
+    params.append('_order', alphabetical)
+    if (indoor) {
+      params.append('outdoor_or_indoor', indoor)
+    }
+    
     axios
-      .get(`http://localhost:5005/plants`)
+      .get(`http://localhost:5005/plants/?_sort=name&${params.toString()}`)
       .then((plantsFromAPI) => {
-        setplants(plantsFromAPI.data)
-        console.log(plantsFromAPI.data);
+        setPlants(plantsFromAPI.data)
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [indoor, alphabetical]);
+
+
+
+  function clearFilters(){
+    axios.get(`http://localhost:5005/plants`)
+    .then((response)=>{
+      setPlants(response.data)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
+
 
   return (
     <div className="vh-100 vw-100">
       <div className="container-fluid">
-        <h1 className="text-center">Plants list</h1>
-        <div className="row row-cols-1 row-cols-md-3 g-6 mb-4">
+        
+        <h1 className="text-center m-4">Plants list</h1>
+          <div className="container-fluid mb-4">
+            <div className="row">
+              <div className="col-1">
+                <div className="dropdown">
+              <button className="btn btn-outline-dark dropdown-toggle " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort
+              </button>
+              <ul className="dropdown-menu">
+                <li><a className="dropdown-item" onClick={() => setAlphabetical('asc')}>A-Z</a></li>
+                <li><a className="dropdown-item" onClick={() => setAlphabetical('desc')}>Z-A</a></li>
+              </ul>
+              </div>
+            </div>
+            <div className="col-1">
+            <div className="dropdown">
+              <button className="btn btn-outline-dark dropdown-toggle " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Indoor or Outdoor
+              </button>
+              <ul className="dropdown-menu">
+                <li><a className="dropdown-item" onClick={() => setIndoor('Indoor')}>Indoor Only</a></li>
+                <li><a className="dropdown-item" onClick={() => setIndoor('Outdoor')}>Outdoor Only</a></li>
+                <li><a className="dropdown-item" onClick={() => setIndoor('')}>Indoor and Outdoor</a></li>
+              </ul>
+            </div>
+            </div>
+            <div className="col text-end">
+              <button className="btn btn-outline-dark" onClick={clearFilters}>Clear All</button>
+            </div>
+          </div>
+        </div>
+        
+
+          <div className="row row-cols-1 row-cols-md-3 g-6 mb-4">
           {plants.map((onePlant) => (
             
             <div className="col mb-4" key={onePlant.id}>
