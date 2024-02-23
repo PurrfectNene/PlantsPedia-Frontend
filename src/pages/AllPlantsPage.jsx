@@ -44,13 +44,13 @@ function AllPlantsPage() {
 
 
   return (
-    <div className="vh-100 vw-100">
+    <div className="vw-100">
       <div className="container-fluid">
         
         <h1 className="text-center m-4">All House Plants</h1>
-          <div className="container-fluid mb-4">
-            <div className="row">
-              <div className="col-1">
+          <div className="container-fluid mb-4 ">
+            <div className="row text-center">
+              <div className="col-md-3 col-sm-6 col-12 mb-3">
                 <div className="dropdown">
               <button className="btn btn-outline-dark dropdown-toggle " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 Sort
@@ -61,7 +61,7 @@ function AllPlantsPage() {
               </ul>
               </div>
             </div>
-            <div className="col-1 mx-5">
+            <div className="col-md-3 col-sm-6 col-12">
             <div className="dropdown">
               <button className="btn btn-outline-dark dropdown-toggle " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 Indoor or Outdoor
@@ -73,7 +73,7 @@ function AllPlantsPage() {
               </ul>
             </div>
             </div>
-            <div className="col-1 mx-5">
+            <div className="col-md-3 col-sm-6 col-12">
             <div className="dropdown">
               <button className="btn btn-outline-dark dropdown-toggle " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 Ease of Care
@@ -85,7 +85,7 @@ function AllPlantsPage() {
               </ul>
             </div>
             </div>
-            <div className="col text-end">
+            <div className="col-md-3 col-sm-6 col-12">
               <button className="btn btn-outline-dark" onClick={clearFilters}>Clear All</button>
             </div>
           </div>
