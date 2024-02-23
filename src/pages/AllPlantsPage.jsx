@@ -6,7 +6,8 @@ import "../AllPlantsPage.css"
 function AllPlantsPage() {
   const [plants, setPlants] = useState([]);
   const [indoor, setIndoor] = useState('')
-  const [alphabetical, setAlphabetical] = useState('asc')
+  const [alphabetical, setAlphabetical] = useState('')
+  const [ease, setEase] = useState('')
 
 
   useEffect(() => {
@@ -15,16 +16,18 @@ function AllPlantsPage() {
     if (indoor) {
       params.append('outdoor_or_indoor', indoor)
     }
+    if (ease) {
+      params.append('ease_of_care', ease)
+    }
     
-    axios
-      .get(`http://localhost:5005/plants/?_sort=name&${params.toString()}`)
+    axios.get(`http://localhost:5005/plants/?_sort=name&${params.toString()}`)
       .then((plantsFromAPI) => {
         setPlants(plantsFromAPI.data)
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [indoor, alphabetical]);
+  }, [indoor, alphabetical, ease]);
 
 
 
@@ -44,7 +47,7 @@ function AllPlantsPage() {
     <div className="vh-100 vw-100">
       <div className="container-fluid">
         
-        <h1 className="text-center m-4">Plants list</h1>
+        <h1 className="text-center m-4">All House Plants</h1>
           <div className="container-fluid mb-4">
             <div className="row">
               <div className="col-1">
@@ -58,7 +61,7 @@ function AllPlantsPage() {
               </ul>
               </div>
             </div>
-            <div className="col-1">
+            <div className="col-1 mx-5">
             <div className="dropdown">
               <button className="btn btn-outline-dark dropdown-toggle " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 Indoor or Outdoor
@@ -67,6 +70,18 @@ function AllPlantsPage() {
                 <li><a className="dropdown-item" onClick={() => setIndoor('Indoor')}>Indoor Only</a></li>
                 <li><a className="dropdown-item" onClick={() => setIndoor('Outdoor')}>Outdoor Only</a></li>
                 <li><a className="dropdown-item" onClick={() => setIndoor('')}>Indoor and Outdoor</a></li>
+              </ul>
+            </div>
+            </div>
+            <div className="col-1 mx-5">
+            <div className="dropdown">
+              <button className="btn btn-outline-dark dropdown-toggle " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Ease of Care
+              </button>
+              <ul className="dropdown-menu">
+                <li><a className="dropdown-item" onClick={() => setEase('Easy')}>Easy</a></li>
+                <li><a className="dropdown-item" onClick={() => setEase('Medium')}>Medium Difficulty</a></li>
+                <li><a className="dropdown-item" onClick={() => setEase('Difficult')}>Difficult</a></li>
               </ul>
             </div>
             </div>
