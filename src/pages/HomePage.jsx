@@ -22,14 +22,14 @@ function HomePage() {
         <div className="row">
           <div className="col-12">
           <p style={{fontSize: '2rem', color: '#474443'}}>Explore our extensive collection of plants, tailored to suit your unique needs and space. Discover the ideal houseplant to brighten your home or office environment effortlessly.</p>
-          <Link to="/plants"><button className="p-3 m-3 btn btn-outline-light" style={{color: '#474443' }}>Explore our curated catalogue of houseplants</button></Link>
+          <Link to="/plants"><button className="p-3 m-3 btn btn-outline-light btn-homepage" style={{color: '#474443' }}>Explore our curated catalogue of houseplants</button></Link>
           </div>
         </div>
       </div>
 
       <div className="container-fluid text-center p-5">
         <h2 style={{fontSize: '2rem', color: '#474443'}}>Don't see your favourite plant in our catalogue?</h2>
-        <Link to="plants/create"><button className="p-3 m-3 btn btn-outline-dark">Add a new plant</button></Link>
+        <Link to="plants/create"><button className="p-3 m-3 btn btn-outline-dark btn-homepage">Add a new plant</button></Link>
       </div>
 
       <div>

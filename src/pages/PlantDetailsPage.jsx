@@ -36,7 +36,7 @@ function PlantDetailsPage() {
     <div>
       {!plant && <p>Loading...</p>}
       {plant && 
-        <div className="row d-flex justify-content-center">
+        <div className="row d-flex justify-content-center mx-5">
             <div className="col text-center">
                 <h1 className="mt-5" style={{letterSpacing: '-5.5px', fontSize: '3rem'}}>{plant.name}</h1>
                 <h2 className='custom-italic' style={{letterSpacing: '-3px'}}>{plant.latin_name}</h2>
@@ -60,9 +60,9 @@ function PlantDetailsPage() {
               </div>
               <div className='d-flex justify-content-center'>
                 <Link to={`/plants/${plant.id}/edit`}>
-                <button className="m-3">Edit me</button>
+                <button className="m-3 btn btn-outline-dark">Edit me</button>
                 </Link>
-                <button className="m-3" onClick={deletePlant}>Delete me</button>
+                <button className="m-3 btn btn-outline-dark" onClick={deletePlant}>Delete me</button>
               </div>
             </div>
         </div>

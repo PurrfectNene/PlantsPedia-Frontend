@@ -1,3 +1,13 @@
 .custom-italic {
     font-style: italic;
 }
+
+.btn-homepage:hover {
+    transform: translateY(10px);
+    transition: 0.5s
+}
+
+.nav-link:hover {
+    transform: translateY(-5px);
+    transition: 0.5s
+}
