@@ -16,8 +16,12 @@ function Navbar() {
           <li className="nav-item col text-nowrap ms-auto">
             <Link to="/plants" className="nav-link px-4 fw-bold" style={{color: 'white'}} >All Plants</Link>
           </li>
+
           <li className="nav-item col text-nowrap ms-auto">
             <Link to="/plants/create" className="nav-link px-4 fw-bold" style={{color: 'white'}} >Add New Plant</Link>
+          <li className="nav-item col text-nowrap">
+            <Link to="/plants/create" className="nav-link px-4 fw-bold" style={{color: 'white'}}>Add New Plant</Link>
+
           </li>
         </ul>
       </div>
