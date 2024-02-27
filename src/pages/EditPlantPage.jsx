@@ -1,9 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-useNavigate
-
-
 
 function EditPlantPage() {
   const [name, setName] = useState('')
@@ -17,6 +14,23 @@ function EditPlantPage() {
   const {plantId} = useParams()
 
   const navigate = useNavigate()
+
+
+  useEffect(() => {
+    axios.get(`http://localhost:5005/plants/${plantId}`)
+    .then((response)=>{
+      setName(response.data.name)
+      setLatin(response.data.latin_name)
+      setDescription(response.data.description)
+      setCare(response.data.care_detail)
+      setOrigin(response.data.origin)
+      setIndoorOutdoor(response.data.indoor)
+    })
+    .catch((err)=> {
+      console.log(err)
+    })
+
+  },[])
 
     function handleSubmit(e){
         e.preventDefault()
@@ -47,35 +61,35 @@ function EditPlantPage() {
           <div className='container-fluid col-md-10 col-sm-10 px-5'>
             <label className="form-label row">
               <h3 className="mt-4">Name</h3> 
-              <input type="text" className="custom-input" placeholder="What's my name?" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setName(e.target.value)} />
+              <input type="text" className="custom-input" value={name} style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setName(e.target.value)} />
             </label>
           </div>
 
           <div className="container-fluid col-md-10 col-sm-10 px-5">
             <label className="form-label row">
               <h3 className="mt-4">Latin Name</h3>
-              <input type="text" className="custom-input" placeholder="What's my name in Latin?" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setLatin(e.target.value)} />
+              <input type="text" className="custom-input" value={latin} style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setLatin(e.target.value)} />
             </label>
           </div>
 
           <div className="container-fluid col-md-10 col-sm-10 px-5">
             <label className="form-label row">
               <h3 className="mt-4">Description</h3>
-              <input type="text" className="custom-input" placeholder="Describe me!" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setDescription(e.target.value)} />
+              <input type="text" className="custom-input" value={description} style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setDescription(e.target.value)} />
             </label>
           </div>
 
           <div className="container-fluid col-md-10 col-sm-10 px-5">
           <label className="form-label row">
             <h3 className="mt-4">Care Details</h3>
-            <input type="text" className="custom-input" placeholder="How should you take care of me?" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setCare(e.target.value)} />
+            <input type="text" className="custom-input" value={care}  style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setCare(e.target.value)} />
           </label>
           </div>
 
           <div className="container-fluid col-md-10 col-sm-10 px-5">
             <label className="form-label row">
               <h3 className="mt-4">Origin</h3>
-              <input type="text" className="custom-input" placeholder="Where am I from?" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setOrigin(e.target.value)}/>
+              <input type="text" className="custom-input" value={origin} style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setOrigin(e.target.value)}/>
             </label>
           </div>
 
