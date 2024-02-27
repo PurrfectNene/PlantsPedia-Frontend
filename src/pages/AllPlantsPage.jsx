@@ -3,6 +3,11 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "../AllPlantsPage.css";
 import Searchbar from "../components/Searchbar";
+import Easy from "../assets/EASY.png";
+import Medium from "../assets/MEDIUM.png";
+import Hard from "../assets/HARD.png";
+import "bootstrap-icons/font/bootstrap-icons.css"
+
 
 function AllPlantsPage() {
   const [plants, setPlants] = useState([]);
@@ -43,7 +48,7 @@ function AllPlantsPage() {
 
   return (
     <div className="vw-100">
-      <Searchbar plants= {plants} setPlants={setPlants}/>
+      <Searchbar plants={plants} setPlants={setPlants} />
 
       <div className="container-fluid">
         <h1 className="text-center m-4">All House Plants</h1>
@@ -175,8 +180,32 @@ function AllPlantsPage() {
                     style={{ height: "600px", objectFit: "cover" }}
                   />
                 </Link>
+                
                 <div className="card-body">
                   <h2 className="card-title text-center">{onePlant.name}</h2>
+                  <p className="card-title text-center">
+                    {onePlant.latin_name}
+                  </p>
+                  <p className="card-title text-center">
+                    {onePlant.outdoor_or_indoor}
+                  </p>
+                      <div className="text-center">
+                        {onePlant.ease_of_care === "Easy" && (
+                          <img src={Easy} alt={onePlant.ease_of_care} />
+                        )}
+                        {onePlant.ease_of_care === "Medium" && (
+                          <img src={Medium} alt={onePlant.ease_of_care} />
+                        )}
+                        {onePlant.ease_of_care === "Difficult" && (
+                          <img src={Hard} alt={onePlant.ease_of_care} />
+                        )}
+                      </div>
+
+                     <div className="d-flex">
+                     <i className="bi bi-flower1"></i>
+                     <p className="ps-2">Add to favourites</p>
+                     </div>
+                      
                 </div>
               </div>
             </div>
