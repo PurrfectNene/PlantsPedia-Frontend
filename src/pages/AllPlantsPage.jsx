@@ -15,6 +15,33 @@ function AllPlantsPage() {
   const [alphabetical, setAlphabetical] = useState("");
   const [ease, setEase] = useState("");
 
+
+  function addFavourites(plant){
+    
+  let favourites = localStorage.getItem("favourites")
+  let favouritesObj = localStorage.getItem("favouritesObj")
+    if(!favourites){
+      console.log('if')
+      
+      localStorage.setItem("favourites", `[${plant.id}]`)
+      localStorage.setItem("favouritesObj", `[${JSON.stringify(plant)}]`)
+     
+    }
+    else if(favourites && !favourites.includes(plant.id)){
+      console.log("else")
+     let ArrFav =  JSON.parse(favourites)
+     console.log(ArrFav)
+     ArrFav.push(plant.id)
+      localStorage.setItem("favourites",`[${ArrFav}]`)
+
+      let ArrFavObj =  JSON.parse(favouritesObj)
+      
+      ArrFavObj.push(plant)
+
+       localStorage.setItem("favouritesObj",`${JSON.stringify(ArrFavObj)}`)
+    }
+  }
+
   useEffect(() => {
     const params = new URLSearchParams();
     params.append("_order", alphabetical);
@@ -164,6 +191,7 @@ function AllPlantsPage() {
               <button className="btn btn-outline-dark" onClick={clearFilters}>
                 Clear All
               </button>
+          
             </div>
           </div>
         </div>
@@ -202,7 +230,9 @@ function AllPlantsPage() {
                       </div>
 
                      <div className="d-flex">
-                     <i className="bi bi-flower1"></i>
+                     
+                     <button onClick={()=>{addFavourites(onePlant)}}><i className="bi bi-flower1"/></button>
+                     {localStorage.getItem('favourites').includes(onePlant.id) && <p>FAV PLANT</p>}
                      <p className="ps-2">Add to favourites</p>
                      </div>
                       
