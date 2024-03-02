@@ -12,7 +12,7 @@ function PlantDetailsPage() {
 
 
   function getPlant(){
-    axios.get(`http://localhost:5005/plants/${plantId}?_embed=comments`)
+    axios.get(`${import.meta.env.VITE_API_URL}/plants/${plantId}?_embed=comments`)
     .then((response) => {
       setPlant(response.data)
     })
@@ -25,7 +25,7 @@ function PlantDetailsPage() {
   }, [plantId])
 
   function deletePlant(){
-    axios.delete(`http://localhost:5005/plants/${plantId}`)
+    axios.delete(`${import.meta.env.VITE_API_URL}/plants/${plantId}`)
     .then(()=>{
       navigate('/plants')
     })
@@ -40,7 +40,7 @@ function PlantDetailsPage() {
   function handleSubmit(e){
     e.preventDefault()
     const newComment = {name:commentName, commentBody:comment, plantId:parseInt(plantId)}
-    axios.post(`http://localhost:5005/comments`, newComment)
+    axios.post(`${import.meta.env.VITE_API_URL}/comments`, newComment)
     .then((response)=>{
       console.log(response.data)
       getPlant()

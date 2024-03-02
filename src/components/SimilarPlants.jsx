@@ -10,7 +10,7 @@ function SimilarPlants(props) {
     const [randomPlant2, setRandomPlant2] = useState()
 
     useEffect(() => {
-        axios.get(`http://localhost:5005/plants`)
+        axios.get(`${import.meta.env.VITE_API_URL}/plants`)
         .then((response) => {
             const allPlants = response.data
             setPlants(allPlants)

@@ -53,7 +53,7 @@ function AllPlantsPage() {
     }
 
     axios
-      .get(`http://localhost:5005/plants/?_sort=name&${params.toString()}`)
+      .get(`https://plantspedia-backend.onrender.com/plants/?_sort=name&${params.toString()}`)
       .then((plantsFromAPI) => {
         setPlants(plantsFromAPI.data);
       })
@@ -237,6 +237,14 @@ function AllPlantsPage() {
                       </div>
                     </div>
                   </div>
+                     <div className="d-flex">
+                     
+                     <button onClick={()=>{addFavourites(onePlant)}}><i className="bi bi-flower1"/></button>
+
+                     {localStorage.getItem('favourites') && localStorage.getItem('favourites').includes(onePlant.id)} 
+
+                     <p className="ps-2">Add to favourites</p>
+                     </div>
                 </div>
               ))}
             </div>
