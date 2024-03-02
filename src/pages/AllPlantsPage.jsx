@@ -232,10 +232,11 @@ function AllPlantsPage() {
                      <div className="d-flex">
                      
                      <button onClick={()=>{addFavourites(onePlant)}}><i className="bi bi-flower1"/></button>
-                     {localStorage.getItem('favourites') && localStorage.getItem('favourites').includes(onePlant.id) && <p>FAV PLANT</p>}
+
+                     {localStorage.getItem('favourites') && localStorage.getItem('favourites').includes(onePlant.id)} 
+
                      <p className="ps-2">Add to favourites</p>
                      </div>
-                      
                 </div>
               </div>
             </div>
