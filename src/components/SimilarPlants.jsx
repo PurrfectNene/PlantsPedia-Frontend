@@ -32,11 +32,12 @@ function SimilarPlants(props) {
                 setRandomPlant2(filteredSimilar[randomNum2])
                 console.log(randomPlant1)
             }
+            window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
         })
         .catch((err)=>{
             console.log(err)
         })
-    },[])
+    },[props.plant.id])
 
   return (
     <div className='container-fluid' style={{backgroundColor: '#e8ebe8'}}>
@@ -48,11 +49,11 @@ function SimilarPlants(props) {
                     {similarPlants &&
                     <div className='d-flex justify-content-center'>
                         <div className='px-5'>
-                            <Link to={`plants/${randomPlant1.id}`}> <img src={randomPlant1.image} alt="" className="m-3 rounded-5" style={{height: '200px', width: '200px'}} /> </Link>
+                            <Link to={`/plants/${randomPlant1.id}`}> <img src={randomPlant1.image} alt="" className="m-3 rounded-5" style={{height: '200px', width: '200px'}} /> </Link>
                             <h3 className='text-center'>{randomPlant1.name}</h3>
                         </div>
                         <div className='px-5'>
-                            <Link to={`plants/${randomPlant2.id}`}> <img src={randomPlant2.image} alt="" className="m-3 rounded-5" style={{height: '200px', width: '200px'}} /> </Link>
+                            <Link to={`/plants/${randomPlant2.id}`}> <img src={randomPlant2.image} alt="" className="m-3 rounded-5" style={{height: '200px', width: '200px'}} /> </Link>
                             <h3 className='text-center'>{randomPlant2.name}</h3>
                         </div>
                     </div>

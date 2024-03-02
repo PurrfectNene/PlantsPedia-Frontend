@@ -208,41 +208,40 @@ function AllPlantsPage() {
                     style={{ height: "600px", objectFit: "cover" }}
                   />
                 </Link>
-                
+                <div style={{position: 'absolute', top: '5px', left: '1px'}}>
+                  {onePlant.ease_of_care === "Easy" && (
+                  <img src={Easy} alt={onePlant.ease_of_care} style={{height: '100px'}} />
+                  )}
+                  {onePlant.ease_of_care === "Medium" && (
+                  <img src={Medium} alt={onePlant.ease_of_care} style={{height: '100px'}}/>
+                  )}
+                  {onePlant.ease_of_care === "Difficult" && (
+                  <img src={Hard} alt={onePlant.ease_of_care} style={{height: '100px'}} />
+                  )}
+                  </div>
                 <div className="card-body">
                   <h2 className="card-title text-center">{onePlant.name}</h2>
-                  <p className="card-title text-center">
-                    {onePlant.latin_name}
-                  </p>
-                  <p className="card-title text-center">
-                    {onePlant.outdoor_or_indoor}
-                  </p>
-                      <div className="text-center">
-                        {onePlant.ease_of_care === "Easy" && (
-                          <img src={Easy} alt={onePlant.ease_of_care} />
-                        )}
-                        {onePlant.ease_of_care === "Medium" && (
-                          <img src={Medium} alt={onePlant.ease_of_care} />
-                        )}
-                        {onePlant.ease_of_care === "Difficult" && (
-                          <img src={Hard} alt={onePlant.ease_of_care} />
-                        )}
+                  <p className="card-title text-center">{onePlant.latin_name}</p>
+                  <p className="card-title text-center">{onePlant.outdoor_or_indoor}</p>
+                    <div className="row d-flex align-items-center">
+                      <div className="col">
+                         <div className="d-flex align-items-center justify-content-end">
+                              <div className="row">
+                                <div className="col-6 text-center">
+                                  <button onClick={()=>{addFavourites(onePlant)}} style={{fontSize: '40px', width: '50px', border: 'none', backgroundColor: 'transparent'}} ><i className="bi bi-flower1"/></button>
+                                  {localStorage.getItem('favourites') && localStorage.getItem('favourites').includes(onePlant.id)}  
+                                </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-
-                     <div className="d-flex">
-                     
-                     <button onClick={()=>{addFavourites(onePlant)}}><i className="bi bi-flower1"/></button>
-                     {localStorage.getItem('favourites').includes(onePlant.id) && <p>FAV PLANT</p>}
-                     <p className="ps-2">Add to favourites</p>
-                     </div>
-                      
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-      </div>
-    </div>
   );
 }
 
