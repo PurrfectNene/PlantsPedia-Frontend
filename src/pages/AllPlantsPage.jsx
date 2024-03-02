@@ -53,7 +53,7 @@ function AllPlantsPage() {
     }
 
     axios
-      .get(`${import.meta.env.VITE_API_URL}/plants/?_sort=name&${params.toString()}`)
+      .get(`https://plantspedia-backend.onrender.com/plants/?_sort=name&${params.toString()}`)
       .then((plantsFromAPI) => {
         setPlants(plantsFromAPI.data);
       })
@@ -64,7 +64,7 @@ function AllPlantsPage() {
 
   function clearFilters() {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/plants`)
+      .get(`http://localhost:5005/plants`)
       .then((response) => {
         setPlants(response.data);
       })
