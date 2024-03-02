@@ -8,6 +8,7 @@ import EditPlantPage from './pages/EditPlantPage'
 import Navbar from './components/Navbar'
 import TopPlantPicks from './components/TopPlantPicks'
 import Footer from './components/Footer'
+import FavouritesPlants from './pages/FavouritesPlants'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       <Route path="/plants/:plantId" element={<PlantDetailsPage/>}></Route>
       <Route path="/plants/create" element={<AddPlantPage/>}></Route>
       <Route path="/plants/:plantId/edit" element={<EditPlantPage/>}></Route>
+      <Route path="/plants/favourites" element={<FavouritesPlants/>}></Route>
     </Routes>
 
     <Footer/>
