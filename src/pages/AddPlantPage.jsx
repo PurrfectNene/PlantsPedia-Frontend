@@ -1,249 +1,110 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import "../AllPlantsPage.css";
-import Searchbar from "../components/Searchbar";
-import Easy from "../assets/EASY.png";
-import Medium from "../assets/MEDIUM.png";
-import Hard from "../assets/HARD.png";
-import "bootstrap-icons/font/bootstrap-icons.css"
+import React from 'react'
+import { useState } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 
-function AllPlantsPage() {
-  const [plants, setPlants] = useState([]);
-  const [indoor, setIndoor] = useState("");
-  const [alphabetical, setAlphabetical] = useState("");
-  const [ease, setEase] = useState("");
+function AddPlantPage() {
+
+  const [name, setName] = useState('')
+  const [latin, setLatin] = useState('')
+  const [description, setDescription] = useState('')
+  const [care, setCare] = useState('')
+  const [origin, setOrigin] = useState('')
+  const [image, setImage] = useState('')
+  const [indoor, setIndoorOutdoor] = useState('')
 
 
-  function addFavourites(plant){
-    
-  let favourites = localStorage.getItem("favourites")
-  let favouritesObj = localStorage.getItem("favouritesObj")
-    if(!favourites){
-      console.log('if')
-      
-      localStorage.setItem("favourites", `[${plant.id}]`)
-      localStorage.setItem("favouritesObj", `[${JSON.stringify(plant)}]`)
-     
-    }
-    else if(favourites && !favourites.includes(plant.id)){
-      console.log("else")
-     let ArrFav =  JSON.parse(favourites)
-     console.log(ArrFav)
-     ArrFav.push(plant.id)
-      localStorage.setItem("favourites",`[${ArrFav}]`)
+  const navigate = useNavigate()
 
-      let ArrFavObj =  JSON.parse(favouritesObj)
-      
-      ArrFavObj.push(plant)
-
-       localStorage.setItem("favouritesObj",`${JSON.stringify(ArrFavObj)}`)
-    }
+  function handleSubmit(e){
+    e.preventDefault()
+    const newPlant = {name:name,latin_name:latin,description:description,care_detail:care,origin:origin,image:image,outdoor_or_indoor:indoor}
+    axios.post(`${import.meta.env.VITE_API_URL}/plants`, newPlant)
+    .then((response) => {
+      console.log(response.data)
+      navigate(`/plants/${response.data.id}/`)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
   }
 
-  useEffect(() => {
-    const params = new URLSearchParams();
-    params.append("_order", alphabetical);
-    if (indoor) {
-      params.append("outdoor_or_indoor", indoor);
-    }
-    if (ease) {
-      params.append("ease_of_care", ease);
-    }
-
-    axios
-      .get(`https://plantspedia-backend.onrender.com/plants/?_sort=name&${params.toString()}`)
-      .then((plantsFromAPI) => {
-        setPlants(plantsFromAPI.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [indoor, alphabetical, ease]);
-
-  function clearFilters() {
-    axios
-      .get(`http://localhost:5005/plants`)
-      .then((response) => {
-        setPlants(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
 
   return (
-    <div className="vw-100">
-      <Searchbar plants={plants} setPlants={setPlants} />
+    <div className='vw-100 d-flex justify-content-center' style={{color:'#474443', backgroundColor: '#E2E2E2'}} >
+      <div className='row' >
+        <div className='p-4'>
+          <h1 className="text-center" style={{fontSize:'3rem'}}>ADD A NEW PLANT</h1>
+        </div>
+  
+      <div className='col'>
+        <form onSubmit={handleSubmit} >
 
-      <div className="container-fluid">
-        <h1 className="text-center m-4">All House Plants</h1>
-        <div className="container-fluid mb-4 ">
-          <div className="row text-center">
-            <div className="col-md-3 col-sm-6 col-12 mb-3">
-              <div className="dropdown">
-                <button
-                  className="btn btn-outline-dark dropdown-toggle "
-                  type="button"
-                  id="dropdownMenuButton"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Sort
-                </button>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a
-                      className="dropdown-item"
-                      onClick={() => setAlphabetical("asc")}
-                    >
-                      A-Z
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="dropdown-item"
-                      onClick={() => setAlphabetical("desc")}
-                    >
-                      Z-A
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-md-3 col-sm-6 col-12">
-              <div className="dropdown">
-                <button
-                  className="btn btn-outline-dark dropdown-toggle "
-                  type="button"
-                  id="dropdownMenuButton"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Indoor or Outdoor
-                </button>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a
-                      className="dropdown-item"
-                      onClick={() => setIndoor("Indoor")}
-                    >
-                      Indoor Only
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="dropdown-item"
-                      onClick={() => setIndoor("Outdoor")}
-                    >
-                      Outdoor Only
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" onClick={() => setIndoor("")}>
-                      Indoor and Outdoor
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-md-3 col-sm-6 col-12">
-              <div className="dropdown">
-                <button
-                  className="btn btn-outline-dark dropdown-toggle "
-                  type="button"
-                  id="dropdownMenuButton"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Ease of Care
-                </button>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a
-                      className="dropdown-item"
-                      onClick={() => setEase("Easy")}
-                    >
-                      Easy
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="dropdown-item"
-                      onClick={() => setEase("Medium")}
-                    >
-                      Medium Difficulty
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="dropdown-item"
-                      onClick={() => setEase("Difficult")}
-                    >
-                      Difficult
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-md-3 col-sm-6 col-12">
-              <button className="btn btn-outline-dark" onClick={clearFilters}>
-                Clear All
-              </button>
+          <div className='container-fluid col-md-10 col-sm-10 px-5'>
+            <label className="form-label row">
+              <h3 className="mt-4">Name</h3> 
+              <input type="text" className="custom-input" placeholder="What's my name?" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setName(e.target.value)} />
+            </label>
+          </div>
+
+          <div className="container-fluid col-md-10 col-sm-10 px-5">
+            <label className="form-label row">
+              <h3 className="mt-4">Latin Name</h3>
+              <input type="text" className="custom-input" placeholder="What's my name in Latin?" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setLatin(e.target.value)} />
+            </label>
+          </div>
+
+          <div className="container-fluid col-md-10 col-sm-10 px-5">
+            <label className="form-label row">
+              <h3 className="mt-4">Description</h3>
+              <input type="text" className="custom-input" placeholder="Describe me!" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setDescription(e.target.value)} />
+            </label>
+          </div>
+
+          <div className="container-fluid col-md-10 col-sm-10 px-5">
+          <label className="form-label row">
+            <h3 className="mt-4">Care Details</h3>
+            <input type="text" className="custom-input" placeholder="How should you take care of me?" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setCare(e.target.value)} />
+          </label>
+          </div>
+
+          <div className="container-fluid col-md-10 col-sm-10 px-5">
+            <label className="form-label row">
+              <h3 className="mt-4">Origin</h3>
+              <input type="text" className="custom-input" placeholder="Where am I from?" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setOrigin(e.target.value)}/>
+            </label>
+          </div>
+
+          <div className="container-fluid col-md-10 col-sm-10 px-5">
+          <label className="form-label row">
+            <h3 className="mt-4">Add an image</h3>
+            <input type="text" className="custom-input" placeholder="Add an image that best portrays me" style={{borderRadius: '10px', border: 'none'}} onChange={(e)=>setImage(e.target.value)} />
+          </label>
+          </div>
+
+          <div className="container-fluid col-md-10 col-sm-10 px-5">
+          <h3 className="mt-4">Outdoor or Indoor?</h3>
+          <select className="form-select row custom-input" style={{borderRadius: '10px', border: 'none'}} onChange={(e) => setIndoorOutdoor(e.target.value)}>
+              <option selected>Should I live indoors or outdoors?</option>
+              <option value="Indoor">Indoor</option>
+              <option value="Outdoor">Outdoor</option>
+              <option value="Outdoor/Indoor">Outdoor/Indoor</option>
+          </select>
+          </div>
           
+          <div className="container-fluid d-flex justify-content-center">
+            <div className="row d-flex ">
+              <div className="col">
+                <button className="p-3 m-5 btn btn-outline-dark">Add Plant</button>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="row row-cols-1 row-cols-md-3 g-6 mb-4">
-          {plants.map((onePlant) => (
-            <div className="col mb-4" key={onePlant.id}>
-              <div className="card square-card h-100">
-                <Link to={`/plants/${onePlant.id}`}>
-                  <img
-                    src={onePlant.image}
-                    className="card-img-top img-fluid"
-                    alt={onePlant.name}
-                    style={{ height: "600px", objectFit: "cover" }}
-                  />
-                </Link>
-                
-                <div className="card-body">
-                  <h2 className="card-title text-center">{onePlant.name}</h2>
-                  <p className="card-title text-center">
-                    {onePlant.latin_name}
-                  </p>
-                  <p className="card-title text-center">
-                    {onePlant.outdoor_or_indoor}
-                  </p>
-                      <div className="text-center">
-                        {onePlant.ease_of_care === "Easy" && (
-                          <img src={Easy} alt={onePlant.ease_of_care} />
-                        )}
-                        {onePlant.ease_of_care === "Medium" && (
-                          <img src={Medium} alt={onePlant.ease_of_care} />
-                        )}
-                        {onePlant.ease_of_care === "Difficult" && (
-                          <img src={Hard} alt={onePlant.ease_of_care} />
-                        )}
-                      </div>
-
-                     <div className="d-flex">
-                     
-                     <button onClick={()=>{addFavourites(onePlant)}}><i className="bi bi-flower1"/></button>
-                     {localStorage.getItem('favourites').includes(onePlant.id) && <p>FAV PLANT</p>}
-                     <p className="ps-2">Add to favourites</p>
-                     </div>
-                      
-                </div>
-              </div>
-            </div>
-          ))}
+        </form>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default AllPlantsPage;
+export default AddPlantPage
