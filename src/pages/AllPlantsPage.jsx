@@ -20,26 +20,21 @@ function AllPlantsPage() {
     
   let favourites = localStorage.getItem("favourites")
   let favouritesObj = localStorage.getItem("favouritesObj")
-    if(!favourites){
-      console.log('if')
-      
-      localStorage.setItem("favourites", `[${plant.id}]`)
-      localStorage.setItem("favouritesObj", `[${JSON.stringify(plant)}]`)
-     
-    }
-    else if(favourites && !favourites.includes(plant.id)){
-      console.log("else")
-     let ArrFav =  JSON.parse(favourites)
-     console.log(ArrFav)
-     ArrFav.push(plant.id)
-      localStorage.setItem("favourites",`[${ArrFav}]`)
 
-      let ArrFavObj =  JSON.parse(favouritesObj)
-      
-      ArrFavObj.push(plant)
+  if(!favourites){      
+    localStorage.setItem("favourites", `[${plant.id}]`)
+    localStorage.setItem("favouritesObj", `[${JSON.stringify(plant)}]`)
+  } else if(favourites && !favourites.includes(plant.id)){
+    let ArrFav =  JSON.parse(favourites)
+    ArrFav.push(plant.id)
+    localStorage.setItem("favourites",`[${ArrFav}]`)
+    console.log(ArrFav)
 
-       localStorage.setItem("favouritesObj",`${JSON.stringify(ArrFavObj)}`)
+    let ArrFavObj =  JSON.parse(favouritesObj)
+    ArrFavObj.push(plant)
+    localStorage.setItem("favouritesObj",`${JSON.stringify(ArrFavObj)}`)
     }
+
   }
 
   useEffect(() => {
