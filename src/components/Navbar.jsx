@@ -55,6 +55,16 @@ function Navbar() {
                 Add New Plant
               </Link>
             </li>
+
+            <li className="nav-item col text-nowrap ms-auto">
+              <Link
+                to="/plants/favourites"
+                className="nav-link px-4 fw-bold"
+                style={{ color: "white" }}
+              >
+                Favourites
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>
