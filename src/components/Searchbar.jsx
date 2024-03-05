@@ -10,7 +10,7 @@ function Searchbar(props) {
         let query = e.target.value;
         console.log("query: ", query)
     
-        axios.get(`http://localhost:5005/plants?name_like=${query}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/plants?name_like=${query}`)
         .then((response)=>{
             props.setPlants(response.data)
         })

@@ -17,7 +17,7 @@ function EditPlantPage() {
 
 
   useEffect(() => {
-    axios.get(`http://localhost:5005/plants/${plantId}`)
+    axios.get(`${import.meta.env.VITE_API_URL}/plants/${plantId}`)
     .then((response)=>{
       setName(response.data.name)
       setLatin(response.data.latin_name)
@@ -37,7 +37,7 @@ function EditPlantPage() {
 
         let editPlants = {name:name,latin_name:latin,description:description,care_detail:care,origin:origin,image:image,outdoor_or_indoor:indoor}
 
-        axios.put(`http://localhost:5005/plants/${plantId}`, editPlants)
+        axios.put(`${import.meta.env.VITE_API_URL}/plants/${plantId}`, editPlants)
         .then((updatedPlantsFromAPI) => {
             navigate(`/plants/${updatedPlantsFromAPI.data.id}/`)
             console.log(updatedPlantsFromAPI.data.id)
