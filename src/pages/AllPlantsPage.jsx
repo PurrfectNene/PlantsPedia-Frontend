@@ -14,6 +14,7 @@ function AllPlantsPage() {
   const [indoor, setIndoor] = useState("");
   const [alphabetical, setAlphabetical] = useState("");
   const [ease, setEase] = useState("");
+  
 
 
   function addFavourites(plant){
@@ -40,6 +41,7 @@ function AllPlantsPage() {
 
        localStorage.setItem("favouritesObj",`${JSON.stringify(ArrFavObj)}`)
     }
+
   }
 
   useEffect(() => {
@@ -200,7 +202,7 @@ function AllPlantsPage() {
           {plants.map((onePlant) => (
             <div className="col mb-4" key={onePlant.id}>
               <div className="card square-card h-100">
-                <Link to={`/plants/${onePlant.id}`}>
+                <Link to={`/plants/${onePlant.id}`} className="zoom-img">
                   <img
                     src={onePlant.image}
                     className="card-img-top img-fluid"
@@ -208,15 +210,15 @@ function AllPlantsPage() {
                     style={{ height: "600px", objectFit: "cover" }}
                   />
                 </Link>
-                <div style={{position: 'absolute', top: '5px', left: '1px'}}>
+                <div style={{position: 'absolute', top: '5px', left: '1px',  padding: '10px'}}>
                   {onePlant.ease_of_care === "Easy" && (
-                  <img src={Easy} alt={onePlant.ease_of_care} style={{height: '100px'}} />
+                  <img src={Easy} alt={onePlant.ease_of_care} style={{width: '23%', backgroundColor: 'SeaGreen', borderRadius: '20%'}}/>
                   )}
                   {onePlant.ease_of_care === "Medium" && (
-                  <img src={Medium} alt={onePlant.ease_of_care} style={{height: '100px'}}/>
+                  <img src={Medium} alt={onePlant.ease_of_care} style={{width: '23%', backgroundColor: 'orange', borderRadius: '20%'}}/>
                   )}
                   {onePlant.ease_of_care === "Difficult" && (
-                  <img src={Hard} alt={onePlant.ease_of_care} style={{height: '100px'}} />
+                  <img src={Hard} alt={onePlant.ease_of_care} style={{width: '23%', backgroundColor: 'Coral', borderRadius: '20%'}} />
                   )}
                   </div>
                 <div className="card-body">
@@ -228,7 +230,7 @@ function AllPlantsPage() {
                          <div className="d-flex align-items-center justify-content-end">
                               <div className="row">
                                 <div className="col-6 text-center">
-                                  <button onClick={()=>{addFavourites(onePlant)}} style={{fontSize: '40px', width: '50px', border: 'none', backgroundColor: 'transparent'}} ><i className="bi bi-flower1"/></button>
+                                  <button onClick={()=>{addFavourites(onePlant)}} style={{fontSize: '40px', width: '50px', border: 'none', backgroundColor: 'transparent'}} ><i className="bi bi-bookmark-heart"/></button>
                                   {localStorage.getItem('favourites') && localStorage.getItem('favourites').includes(onePlant.id)}  
                                 </div>
                             </div>
@@ -238,12 +240,8 @@ function AllPlantsPage() {
                     </div>
                   </div>
                      <div className="d-flex">
-                     
-                     <button onClick={()=>{addFavourites(onePlant)}}><i className="bi bi-flower1"/></button>
 
                      {localStorage.getItem('favourites') && localStorage.getItem('favourites').includes(onePlant.id)} 
-
-                     <p className="ps-2">Add to favourites</p>
                      </div>
                 </div>
               ))}
