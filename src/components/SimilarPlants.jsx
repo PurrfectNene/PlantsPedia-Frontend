@@ -22,7 +22,6 @@ function SimilarPlants(props) {
 
             if (filteredSimilar){ 
                 let randomNum = Math.floor(Math.random()*filteredSimilar.length)
-
                 let randomNum2;
                 do {
                     randomNum2 = Math.floor(Math.random()*filteredSimilar.length)

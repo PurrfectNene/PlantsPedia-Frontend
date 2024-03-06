@@ -11,3 +11,7 @@ a {
 .custom-input {
     height: 50px;
 }
+
+body {
+    margin: 0;
+}

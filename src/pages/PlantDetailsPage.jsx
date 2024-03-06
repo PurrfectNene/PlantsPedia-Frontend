@@ -55,28 +55,30 @@ function PlantDetailsPage() {
       {!plant && <p>Loading...</p>}
       {plant && 
         <div className="row d-flex justify-content-center">
-            <div className="col text-center mx-5 mb-5">
+            <div className="col text-center mx-5 mb-3">
                 <h1 className="mt-5" style={{letterSpacing: '-5.5px', fontSize: '3rem'}}>{plant.name}</h1>
                 <h2 className='custom-italic mt-3' style={{letterSpacing: '-3px'}}>{plant.latin_name}</h2>
                 <img src={plant.image} className='mt-3' style={{height: '400px', width: 'auto', borderRadius: '50px'}} />
+                <h3 className="mt-5">How to grow and care for your {plant.name}</h3>
             </div>
             <div className="row">
               <div className="px-5">
                 <p>{plant.description}</p>
               </div>
               <div className="px-5">
-                <h2>Where am I from?</h2>
+                <h4>Where am I from?</h4>
                 <p>{plant.origin}</p>
               </div>
               <div className="px-5">
-                <h2>How to look after me</h2>
+                <h4>How to look after me</h4>
                 <p>{plant.care_detail}</p>
               </div>
               <div className="px-5">
-                <h2>Where should I live?</h2>
+                <h4>Where should I live?</h4>
                 <p>{plant.outdoor_or_indoor}</p>
               </div>
-              <div className='px-5'>
+              <div className='px-5 text-center'>
+                <p className='fw-bold'>See something that needs changing?</p>
                 <Link to={`/plants/${plant.id}/edit`}>
                 <button className="btn btn-outline-dark mb-5">Edit me</button>
                 </Link>
@@ -84,7 +86,7 @@ function PlantDetailsPage() {
               </div>
 
               <div className="flex-column d-flex pt-4 px-5 pb-4" style={{backgroundColor: '#bdc6b3'}}>
-                <h3 className="pb-4">Got something to say about the {plant.name}? Add a comment below to help others:</h3>
+                <h4 className="pb-4">Got something to say about the {plant.name}? Add a comment below to help others:</h4>
                 <div className="col">
                   <form onSubmit={handleSubmit}>
                     <div className="row">

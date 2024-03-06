@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 function Navbar() {
+
+
   return (
     <div>
       <nav
@@ -36,7 +40,7 @@ function Navbar() {
           </button>
         </div>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul className="navbar-nav">
+          <ul className="navbar-nav ms-auto">
             <li className="nav-item col text-nowrap ms-auto">
               <Link
                 to="/plants"
