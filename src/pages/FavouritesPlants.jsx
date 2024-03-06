@@ -24,7 +24,7 @@ function FavouritesPlants() {
   }
 
   return (
-    <div className="container-fluid vw-100">
+    <div className="container-fluid vw-100 vh-100">
         {favourites && (
         <>
           <h1 className="text-center m-4">Your Favourite Plants</h1>
@@ -58,7 +58,7 @@ function FavouritesPlants() {
                   <h2 className="card-title text-center">{onePlant.name}</h2>
                   <p className="card-title text-center">{onePlant.latin_name}</p>
                   <p className="card-title text-center">{onePlant.outdoor_or_indoor}</p>
-                  <button onClick={()=> removeFavourite(onePlant.id)} className="btn btn-outline-dark mt-4">Remove from Favourites</button>
+                  <button onClick={()=>removeFavourite(onePlant.id)} className="btn btn-outline-dark mt-4">Remove from Favourites</button>
                 </div>
               </div>
             </div>
@@ -67,7 +67,7 @@ function FavouritesPlants() {
           {favourites.length === 0 && (
             <div className="container-fluid">
               <div className="row">
-                <div className="text-center">No favourites are found</div>
+                <div className="text-center text-danger fs-3 mt-5">Your list of favourites is empty!</div>
             </div>
           </div>
           )}  
