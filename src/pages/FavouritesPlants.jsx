@@ -39,7 +39,7 @@ function FavouritesPlants() {
           })}
           </div>
           {favourites.length === 0 && (
-            <div className="container-fluid">
+            <div className="container-fluid" style={{width: '100vw', height: '100vh'}}>
               <div className="row">
                 <div className="text-center text-danger fs-3 mt-5">Your list of favourites is empty!</div>
             </div>
