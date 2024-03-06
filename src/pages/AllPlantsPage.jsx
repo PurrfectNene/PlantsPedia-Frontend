@@ -3,11 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "../AllPlantsPage.css";
 import Searchbar from "../components/Searchbar";
-import Easy from "../assets/EASY.png";
-import Medium from "../assets/MEDIUM.png";
-import Hard from "../assets/HARD.png";
-import "bootstrap-icons/font/bootstrap-icons.css"
-
+import "bootstrap-icons/font/bootstrap-icons.css";
+import PlantCard from "../components/PlantCard";
 
 function AllPlantsPage() {
   const [plants, setPlants] = useState([]);
@@ -15,28 +12,6 @@ function AllPlantsPage() {
   const [alphabetical, setAlphabetical] = useState("");
   const [ease, setEase] = useState("");
   
-
-
-  function addFavourites(plant){
-    
-  let favourites = localStorage.getItem("favourites")
-  let favouritesObj = localStorage.getItem("favouritesObj")
-
-  if(!favourites){      
-    localStorage.setItem("favourites", `[${plant.id}]`)
-    localStorage.setItem("favouritesObj", `[${JSON.stringify(plant)}]`)
-  } else if(favourites && !favourites.includes(plant.id)){
-    let ArrFav =  JSON.parse(favourites)
-    ArrFav.push(plant.id)
-    localStorage.setItem("favourites",`[${ArrFav}]`)
-    console.log(ArrFav)
-
-    let ArrFavObj =  JSON.parse(favouritesObj)
-    ArrFavObj.push(plant)
-    localStorage.setItem("favouritesObj",`${JSON.stringify(ArrFavObj)}`)
-    }
-
-  }
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -49,7 +24,11 @@ function AllPlantsPage() {
     }
 
     axios
-      .get(`${import.meta.env.VITE_API_URL}/plants/?_sort=name&${params.toString()}`)
+      .get(
+        `${
+          import.meta.env.VITE_API_URL
+        }/plants/?_sort=name&${params.toString()}`
+      )
       .then((plantsFromAPI) => {
         setPlants(plantsFromAPI.data);
       })
@@ -187,61 +166,16 @@ function AllPlantsPage() {
               <button className="btn btn-outline-dark" onClick={clearFilters}>
                 Clear All
               </button>
-          
             </div>
           </div>
         </div>
-
         <div className="row row-cols-1 row-cols-md-3 g-6 mb-4">
-          {plants.map((onePlant) => (
-            <div className="col mb-4" key={onePlant.id}>
-              <div className="card square-card h-100">
-                <Link to={`/plants/${onePlant.id}`} className="zoom-img">
-                  <img
-                    src={onePlant.image}
-                    className="card-img-top img-fluid"
-                    alt={onePlant.name}
-                    style={{ height: "600px", objectFit: "cover" }}
-                  />
-                </Link>
-                <div style={{position: 'absolute', top: '5px', left: '1px',  padding: '10px'}}>
-                  {onePlant.ease_of_care === "Easy" && (
-                  <img src={Easy} alt={onePlant.ease_of_care} style={{width: '23%', backgroundColor: 'SeaGreen', borderRadius: '20%'}}/>
-                  )}
-                  {onePlant.ease_of_care === "Medium" && (
-                  <img src={Medium} alt={onePlant.ease_of_care} style={{width: '23%', backgroundColor: 'orange', borderRadius: '20%'}}/>
-                  )}
-                  {onePlant.ease_of_care === "Difficult" && (
-                  <img src={Hard} alt={onePlant.ease_of_care} style={{width: '23%', backgroundColor: 'Coral', borderRadius: '20%'}} />
-                  )}
-                  </div>
-                <div className="card-body">
-                  <h2 className="card-title text-center">{onePlant.name}</h2>
-                  <p className="card-title text-center">{onePlant.latin_name}</p>
-                  <p className="card-title text-center">{onePlant.outdoor_or_indoor}</p>
-                    <div className="row d-flex align-items-center">
-                      <div className="col">
-                         <div className="d-flex align-items-center justify-content-end">
-                              <div className="row">
-                                <div className="col-6 text-center">
-                                  <button onClick={()=>{addFavourites(onePlant)}} style={{fontSize: '40px', width: '50px', border: 'none', backgroundColor: 'transparent'}} ><i className="bi bi-bookmark-heart"/></button>
-                                  {localStorage.getItem('favourites') && localStorage.getItem('favourites').includes(onePlant.id)}  
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                     <div className="d-flex">
-
-                     {localStorage.getItem('favourites') && localStorage.getItem('favourites').includes(onePlant.id)} 
-                     </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          {plants.map((onePlant) => {
+            return <PlantCard key={onePlant.id} plantInfo={onePlant} />;
+          })}
         </div>
+      </div>
+    </div>
   );
 }
 
