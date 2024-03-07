@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import "../AllPlantsPage.css";
 import Searchbar from "../components/Searchbar";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -42,6 +41,9 @@ function AllPlantsPage() {
       .get(`${import.meta.env.VITE_API_URL}/plants`)
       .then((response) => {
         setPlants(response.data);
+        setIndoor('')
+        setAlphabetical('')
+        setEase('')
       })
       .catch((err) => {
         console.log(err);
@@ -56,22 +58,22 @@ function AllPlantsPage() {
         <h1 className="text-center m-4">All House Plants</h1>
         <div className="container-fluid mb-4 ">
           <div className="row text-center">
-            <div className="col-md-3 col-sm-6 col-12 mb-3">
-              <div className="dropdown">
+            <div className="col-md-3 col-sm-6 col-12">
+              <div className="dropdown mb-1">
                 <button
-                  className="btn btn-outline-dark dropdown-toggle "
+                  className="btn btn-outline-dark dropdown-toggle filter-btn"
                   type="button"
                   id="dropdownMenuButton"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                >
-                  Sort
+                  style={window.innerWidth <= 1073 ? { fontSize: '10px' } : null}>
+                  Sort: {<strong>{alphabetical}</strong>}
                 </button>
                 <ul className="dropdown-menu">
                   <li>
                     <a
                       className="dropdown-item"
-                      onClick={() => setAlphabetical("asc")}
+                      onClick={() => setAlphabetical("A-Z")}
                     >
                       A-Z
                     </a>
@@ -79,7 +81,7 @@ function AllPlantsPage() {
                   <li>
                     <a
                       className="dropdown-item"
-                      onClick={() => setAlphabetical("desc")}
+                      onClick={() => setAlphabetical("Z-A")}
                     >
                       Z-A
                     </a>
@@ -88,15 +90,16 @@ function AllPlantsPage() {
               </div>
             </div>
             <div className="col-md-3 col-sm-6 col-12">
-              <div className="dropdown">
+              <div className="dropdown mb-1">
                 <button
-                  className="btn btn-outline-dark dropdown-toggle "
+                  className="btn btn-outline-dark dropdown-toggle filter-btn"
                   type="button"
                   id="dropdownMenuButton"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
+                  style={window.innerWidth <= 1073 ? { fontSize: '10px' } : null}
                 >
-                  Indoor or Outdoor
+                  Indoor/Outdoor: {<strong>{indoor}</strong>}
                 </button>
                 <ul className="dropdown-menu">
                   <li>
@@ -116,23 +119,24 @@ function AllPlantsPage() {
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" onClick={() => setIndoor("")}>
-                      Indoor and Outdoor
+                    <a className="dropdown-item" onClick={() => setIndoor("Outdoor/Indoor")}>
+                      Both
                     </a>
                   </li>
                 </ul>
               </div>
             </div>
             <div className="col-md-3 col-sm-6 col-12">
-              <div className="dropdown">
+              <div className="dropdown mb-1">
                 <button
-                  className="btn btn-outline-dark dropdown-toggle "
+                  className="btn btn-outline-dark dropdown-toggle filter-btn"
                   type="button"
                   id="dropdownMenuButton"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
+                  style={window.innerWidth <= 1073 ? { fontSize: '10px' } : null}
                 >
-                  Ease of Care
+                  Ease of Care: {<strong>{ease}</strong>}
                 </button>
                 <ul className="dropdown-menu">
                   <li>
@@ -163,16 +167,19 @@ function AllPlantsPage() {
               </div>
             </div>
             <div className="col-md-3 col-sm-6 col-12">
-              <button className="btn btn-outline-dark" onClick={clearFilters}>
+              <button className="btn btn-outline-dark filter-btn mb-1" style={window.innerWidth <= 1073 ? { fontSize: '10px' } : null} onClick={clearFilters}>
                 Clear All
               </button>
             </div>
           </div>
         </div>
-        <div className="row row-cols-1 row-cols-md-3 g-6 mb-4">
+        <div>
+          
+          <div className="row row-cols-1 row-cols-md-3 g-6 mb-4">
           {plants.map((onePlant) => {
             return <PlantCard key={onePlant.id} plantInfo={onePlant} />;
           })}
+          </div>
         </div>
       </div>
     </div>
