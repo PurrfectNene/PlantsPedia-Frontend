@@ -40,7 +40,7 @@ function TopPlantPicks() {
             {!lastPlant && <p>Loading</p>}
             {lastPlant && 
             <div className='d-flex flex-column align-items-center'>
-              <Link to={`plants/${lastPlant.id}`}> <img src={lastPlant.image} alt="" className="m-3 rounded-5" style={{height: '200px', width: '200px'}}  /></Link>
+              <Link to={`plants/${lastPlant.id}`}> <img src={lastPlant.image} alt="" className="m-3 rounded-5 recent-card" style={{height: '200px', width: '200px'}}  /></Link>
               <h3 style={{color: '#474443'}}>{lastPlant.name}</h3>
             </div>
             }
@@ -50,17 +50,17 @@ function TopPlantPicks() {
             {!secondToLastPlant && <p>Loading</p>}
             {secondToLastPlant && 
             <div className='d-flex flex-column align-items-center'>
-              <Link to={`plants/${secondToLastPlant.id}`}> <img src={secondToLastPlant.image} alt="" className="m-3 rounded-5" style={{height: '200px', width: '200px'}}/></Link>
+              <Link to={`plants/${secondToLastPlant.id}`}> <img src={secondToLastPlant.image} alt="" className="m-3 rounded-5 recent-card" style={{height: '200px', width: '200px'}}/></Link>
               <h3 style={{color: '#474443'}}>{secondToLastPlant.name}</h3>
             </div>
             }
           </div>
 
-          <div className="col-12 col-md-2 card mx-5 border-0" style={{backgroundColor: '#e8ebe8'}}>
+          <div className="col-12 col-md-2 card mx-5 border-0 " style={{backgroundColor: '#e8ebe8'}}>
             {!thirdToLastPlant && <p>Loading</p>}
             {thirdToLastPlant && 
             <div className='d-flex flex-column align-items-center'>
-              <Link to={`plants/${thirdToLastPlant.id}`}> <img src={thirdToLastPlant.image} alt="" className="m-3 rounded-5" style={{height: '200px', width: '200px'}}/></Link>
+              <Link to={`plants/${thirdToLastPlant.id}`}> <img src={thirdToLastPlant.image} alt="" className="m-3 rounded-5 recent-card" style={{height: '200px', width: '200px'}}/></Link>
               <h3 style={{color: '#474443'}}>{thirdToLastPlant.name}</h3>
             </div>
             }

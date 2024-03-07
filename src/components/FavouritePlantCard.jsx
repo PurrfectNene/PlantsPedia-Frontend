@@ -65,12 +65,12 @@ function FavouritePlantCard(props) {
           </p>
           <div className="row d-flex align-items-center">
             <div className="col">
-              <div className="d-flex align-items-center justify-content-end">
+              <div className="d-flex align-items-center justify-content-center">
                 <div className="row">
                   <div className="col-6 text-center card-body">
                     <button
                       onClick={() => props.removeFavourite(props.plantInfo.id)}
-                      className="btn btn-outline-dark mt-4"
+                      className="btn btn-outline-dark"
                     >
                       Remove from Favourites
                     </button>

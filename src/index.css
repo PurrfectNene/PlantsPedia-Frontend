@@ -12,3 +12,6 @@
     transition: 0.5s
 }
 
+.recent-card:hover {
+    transform: scale(1.2);
+}
