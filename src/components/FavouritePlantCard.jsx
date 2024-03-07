@@ -58,8 +58,8 @@ function FavouritePlantCard(props) {
           )}
         </div>
         <div className="card-body">
-          <h2 className="card-title text-center">{props.plantInfo.name}</h2>
-          <p className="card-title text-center">{props.plantInfo.latin_name}</p>
+          <h2 className="card-title text-center text-truncate">{props.plantInfo.name}</h2>
+          <p className="card-title text-center text-truncate">{props.plantInfo.latin_name}</p>
           <p className="card-title text-center">
             {props.plantInfo.outdoor_or_indoor}
           </p>
@@ -72,7 +72,7 @@ function FavouritePlantCard(props) {
                       onClick={() => props.removeFavourite(props.plantInfo.id)}
                       className="btn btn-outline-dark"
                     >
-                      Remove from Favourites
+                      Remove
                     </button>
                     {localStorage.getItem("favourites") &&
                       localStorage
