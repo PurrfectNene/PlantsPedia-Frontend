@@ -49,6 +49,10 @@ function PlantDetailsPage() {
       console.log(err)
     })
   }
+  function handleClick(e){
+    setComment('')
+    setCommentName('')
+  }
 
   return (
     <div>
@@ -100,7 +104,7 @@ function PlantDetailsPage() {
                     </div>
                     <div className="row">
                       <div className="col">
-                        <button className="btn btn-outline-dark">Submit</button>
+                        <button className="btn btn-outline-dark" >Submit</button>
                       </div>
                     </div>
                     </div>
