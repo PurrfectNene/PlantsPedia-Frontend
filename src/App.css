@@ -11,3 +11,17 @@ a {
 .custom-input {
     height: 50px;
 }
+
+body {
+    margin: 0;
+}
+
+.navbar-collapse {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s ease-in-out; /* Adding transition */
+  }
+  
+  .navbar-collapse.expanded {
+    max-height: 200px; /* Set the height you want when expanded */
+  }

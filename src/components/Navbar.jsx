@@ -1,11 +1,28 @@
+import { useEffect, useState } from "react";
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 function Navbar() {
+
+  const [expanded, setExpanded] = useState(false)
+
+  const handleMouseEnter=()=>{
+    setExpanded(true)
+  }
+  const handleMouseLeave=()=>{
+    setTimeout(()=> {
+      setExpanded(false)
+    }, 2000)
+  }
+  // const clearMouseTimer=()=>{
+  //   setExpanded(false)
+  // }
+
   return (
     <div>
       <nav
-        className="navbar p-4"
+        className={`navbar p-4 ${expanded ? 'expanded' : ''}`}
         style={{
           fontFamily: "Be Vietnam Pro,Inter,system-ui,sans",
           backgroundColor: "#536847",
@@ -22,21 +39,17 @@ function Navbar() {
           <button
             className="navbar-toggler navbar-dark"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            style={{ border: "1px solid white" }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <span
-              className="navbar-toggler-icon"
+              className={`navbar-toggler-icon `}
               style={{ color: "white" }}
             ></span>
           </button>
         </div>
-        <div className="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul className="navbar-nav">
+        <div className={`navbar-collapse ${expanded ? 'expanded' : '' }`}>
+          <ul className="navbar-nav ms-auto">
             <li className="nav-item col text-nowrap ms-auto">
               <Link
                 to="/plants"

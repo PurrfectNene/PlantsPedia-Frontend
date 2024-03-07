@@ -11,3 +11,13 @@
     transform: translateY(-5px);
     transition: 0.5s
 }
+
+.recent-card:hover {
+    transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+    .filter-btn {
+        width: 200px
+    }
+}
