@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Easy from "../assets/EASY.png";
 import Medium from "../assets/MEDIUM.png";
 import Hard from "../assets/HARD.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function PlantCard(props) {
 
@@ -24,10 +24,27 @@ function PlantCard(props) {
       let ArrFavObj = JSON.parse(favouritesObj);
       ArrFavObj.push(plant);
       localStorage.setItem("favouritesObj", `${JSON.stringify(ArrFavObj)}`);
+    } else if (favourites && favourites.includes(plant.id)) {
+      let arrFav = JSON.parse(favourites)
+      let plantIndexFavorites = arrFav.indexOf(plant.id)
+      arrFav.splice(plantIndexFavorites, 1)
+      localStorage.setItem("favourites", `[${arrFav}]`);
+
+      let arrFavObj = JSON.parse(favouritesObj)
+      let plantFavoritesObj = arrFavObj.filter(({id}) => id !== plant.id)
+      localStorage.setItem("favouritesObj", `${JSON.stringify(plantFavoritesObj)}`);
+
     }
 
     setIsInfoIcon(!isInfoIcon);
   }
+
+  useEffect(() => {
+    let favourites = localStorage.getItem("favourites");
+    if(favourites && favourites.includes(props.plantInfo.id)) {
+      setIsInfoIcon(false)
+    }
+  }, [])
 
   return (
     <div className="col mb-4" key={props.plantInfo.id}>
@@ -83,8 +100,8 @@ function PlantCard(props) {
           )}
         </div>
         <div className="card-body">
-          <h2 className="card-title text-center">{props.plantInfo.name}</h2>
-          <p className="card-title text-center">{props.plantInfo.latin_name}</p>
+          <h2 className="card-title text-center text-truncate">{props.plantInfo.name}</h2>
+          <p className="card-title text-center text-truncate">{props.plantInfo.latin_name}</p>
           <p className="card-title text-center">
             {props.plantInfo.outdoor_or_indoor}
           </p>

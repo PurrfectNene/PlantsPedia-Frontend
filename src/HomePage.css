@@ -6,25 +6,28 @@
 }
 
 @media (max-width: 786px) {
-    .col-lg-7 > div h1 {
-        font-size: 3rem !important;
-        text-align: center;
-        animation: animateLeft 1s;
-    }
     .bg-img {
-        background-size: contain;
+        justify-content: center;
     }
-    .col-lg-7 > div{
+    .first-h1 {
+        font-size: 2.5rem !important;
         width: 100%;
-        margin-bottom: 1rem;
-        margin: auto;
-        bottom: 100
+        /* text-align: center; */
+        margin-left: 10%;
+        margin-bottom: 30px;
+    }
+    .second-h1 {
+        font-size: 2.5rem !important;
+        width: 100%;
+        /* text-align: center; */
+        margin-right: 70%;
+        margin-bottom: 20%;
     }
 }
 
 @media (max-width: 992px) {
-    .col-lg-7 > div h1 {
-        font-size: 3rem !important;
+    h1 {
+        font-size: 4rem !important;
     }
 }
 

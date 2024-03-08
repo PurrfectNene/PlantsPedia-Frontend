@@ -9,14 +9,14 @@ function HomePage() {
     <div className=''>
       <div className="bg-img">
         <div className="d-flex align-items-center" style={{backgroundImage: `url(${homePageImage})`, minHeight: '100vh', backgroundSize: 'cover', backgroundPosition: 'center', overflow: 'none'}}>
-          <div className="container-fluid">
+          <div className="container-fluid overlay">
             <div className="row justify-content-end">
               <div className='col-lg-6 col-md-10 col-sm-12 col-xs-12'>
                 <div style={{position: 'absolute', top: '30%', left: '3%', width: '50%'}} >
-                  <h1 className="text-uppercase first-h1" style={{fontSize:'4.7rem', color:'#474443', display: "block", letterSpacing: '-8px'}} >Develop Plant Knowledge</h1>
+                  <h1 className="text-uppercase first-h1" style={{fontSize:'4.5rem', color:'#474443', display: "block", letterSpacing: '-5px'}} >Develop Plant Knowledge</h1>
                 </div>
-                <div className=''  style={{position: 'absolute', bottom: '10%', right: '3%', width: '50%'}}>
-                  <h1 className="text-uppercase second-h1" style={{fontSize:'4.7rem', color:'#474443', display: "block", letterSpacing: '-8px', textAlign: 'right'}}>Support Your Indoor Greenery</h1>
+                <div className='text-end' style={{position: 'absolute', bottom: '10%', right: '3%', width: '50%'}}>
+                  <h1 className="text-uppercase second-h1 " style={{fontSize:'4.5rem', color:'#474443', display: "block", letterSpacing: '-5px'}}>Support Your Indoor Greenery</h1>
                 </div>
             </div>
           </div>
