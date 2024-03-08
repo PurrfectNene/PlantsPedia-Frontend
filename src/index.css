@@ -27,14 +27,7 @@
     }
 }
 
-@media (min-width: 768px) and (max-width: 1000px) {
-    .row-cols-md-3 > .col {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-}
-
-@media (min-width: 1000px) and (max-width: 1750px) {
+@media (min-width: 768px) and (max-width: 1250px) {
     .row-cols-md-3 > .col {
         flex: 0 0 50%;
         max-width: 50%;
