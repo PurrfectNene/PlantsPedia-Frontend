@@ -26,6 +26,8 @@ function Navbar() {
         style={{
           fontFamily: "Be Vietnam Pro,Inter,system-ui,sans",
           backgroundColor: "#536847",
+          display: "flex",
+          justifyContent: "flex-end",
         }}
       >
         <div className="container-fluid">
@@ -36,21 +38,8 @@ function Navbar() {
           >
             PlantsPedia
           </Link>
-          <button
-            className="navbar-toggler navbar-dark"
-            type="button"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <span
-              className={`navbar-toggler-icon `}
-              style={{ color: "white" }}
-            ></span>
-          </button>
-        </div>
-        <div className={`navbar-collapse ${expanded ? 'expanded' : '' }`}>
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item col text-nowrap ms-auto">
+          <ul style={{ listStyleType: "none", margin: 0, padding: 0, display: "flex" }}>
+            <li className="nav-item">
               <Link
                 to="/plants"
                 className="nav-link px-4 fw-bold"
@@ -59,7 +48,7 @@ function Navbar() {
                 All Plants
               </Link>
             </li>
-            <li className="nav-item col text-nowrap ms-auto">
+            <li className="nav-item">
               <Link
                 to="/plants/create"
                 className="nav-link px-4 fw-bold"
@@ -69,7 +58,7 @@ function Navbar() {
               </Link>
             </li>
 
-            <li className="nav-item col text-nowrap ms-auto">
+            <li className="nav-item">
               <Link
                 to="/plants/favourites"
                 className="nav-link px-4 fw-bold"
@@ -78,10 +67,29 @@ function Navbar() {
                 Favourites
               </Link>
             </li>
+            <li className="nav-item">
+              <Link
+                to="/login"
+                className="nav-link px-4 fw-bold"
+                style={{ color: "white" }}
+              >
+                Log In
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/signup"
+                className="nav-link px-4 fw-bold"
+                style={{ color: "white" }}
+              >
+                Sign Up
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>
     </div>
+
   );
 }
 

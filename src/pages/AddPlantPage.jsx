@@ -32,13 +32,14 @@ function AddPlantPage() {
 
 
   return (
-    <div className='vw-100 d-flex justify-content-center' style={{color:'#474443', backgroundColor: '#E2E2E2'}} >
+    <div className='vw-100 d-flex justify-content-center' style={{color:'#474443'}} >
       <div className='row' >
-        <div className='p-4'>
-          <h1 className="text-center" style={{fontSize:'3rem'}}>ADD A NEW PLANT</h1>
-        </div>
+
   
-      <div className='col'>
+      <div className='container m-4' style={{backgroundColor: '#E2E2E2', borderRadius: '10px', width: '50vw'}}>
+        <div className='p-4'>
+            <h1 className="text-center" style={{fontSize:'3rem'}}>Add a new plant</h1>
+        </div>
         <form onSubmit={handleSubmit} >
 
           <div className='container-fluid col-md-10 col-sm-10 px-5'>

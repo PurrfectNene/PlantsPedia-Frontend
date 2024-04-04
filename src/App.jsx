@@ -9,6 +9,8 @@ import Navbar from './components/Navbar'
 import TopPlantPicks from './components/TopPlantPicks'
 import Footer from './components/Footer'
 import FavouritesPlants from './pages/FavouritesPlants'
+import SignupPage from './pages/SignupPage'
+import LoginPage from './pages/LoginPage'
 
 function App() {
 
@@ -23,6 +25,9 @@ function App() {
       <Route path="/plants/create" element={<AddPlantPage/>}></Route>
       <Route path="/plants/:plantId/edit" element={<EditPlantPage/>}></Route>
       <Route path="/plants/favourites" element={<FavouritesPlants/>}></Route>
+      <Route path="/signup" element={<SignupPage/>}></Route>
+      <Route path="/login" element={<LoginPage/>}></Route>
+
     </Routes>
 
     <Footer/>
