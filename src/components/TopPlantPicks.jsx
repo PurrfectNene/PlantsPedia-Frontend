@@ -10,7 +10,7 @@ function TopPlantPicks() {
 
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/plants/`)
+        axios.get(`${import.meta.env.VITE_API_URL}/api/plants/`)
 
         .then((response) =>{
             const allPlants = response.data

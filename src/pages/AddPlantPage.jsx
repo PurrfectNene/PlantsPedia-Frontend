@@ -20,7 +20,7 @@ function AddPlantPage() {
   function handleSubmit(e){
     e.preventDefault()
     const newPlant = {name:name,latin_name:latin,description:description,care_detail:care,origin:origin,image:image,outdoor_or_indoor:indoor}
-    axios.post(`${import.meta.env.VITE_API_URL}/plants`, newPlant)
+    axios.post(`${import.meta.env.VITE_API_URL}/api/plants`, newPlant)
     .then((response) => {
       console.log(response.data)
       navigate(`/plants/${response.data.id}/`)

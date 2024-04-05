@@ -12,7 +12,7 @@ function PlantDetailsPage() {
 
 
   function getPlant(){
-    axios.get(`${import.meta.env.VITE_API_URL}/plants/${plantId}?_embed=comments`)
+    axios.get(`${import.meta.env.VITE_API_URL}/api/plants/${plantId}?_embed=comments`)
     .then((response) => {
       setPlant(response.data)
     })

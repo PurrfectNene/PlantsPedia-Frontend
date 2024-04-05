@@ -22,11 +22,7 @@ function AllPlantsPage() {
       params.append("ease_of_care", ease);
     }
 
-    axios
-      .get(
-        `${
-          import.meta.env.VITE_API_URL
-        }/plants/?_sort=name&${params.toString()}`
+    axios.get(`${import.meta.env.VITE_API_URL}/api/plants/?_sort=name&${params.toString()}`
       )
       .then((plantsFromAPI) => {
         setPlants(plantsFromAPI.data);
@@ -38,7 +34,7 @@ function AllPlantsPage() {
 
   function clearFilters() {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/plants`)
+      .get(`${import.meta.env.VITE_API_URL}/api/plants`)
       .then((response) => {
         setPlants(response.data);
         setIndoor('')

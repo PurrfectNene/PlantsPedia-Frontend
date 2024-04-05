@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function SignupPage() {
+
+    const [errorMessage,setErrorMessage] = useState('')
+
   return (
     <div className='vh-100 vw-100 d-flex flex-column align-items-center' style={{color:'#474443'}}>
         <div className='container-fluid m-5' style={{backgroundColor: '#E2E2E2', maxWidth: '40vw', borderRadius: '10px'}}>
@@ -41,6 +44,7 @@ function SignupPage() {
                         </div>
                     </div>
                     <button className='mt-5 btn btn-outline-dark'>Sign up</button>
+                    {errorMessage && <p></p>}
                 </form>
                 <p className='m-4 pt-2'>Already have an account? <Link to='/login'>Log in.</Link></p>
             </div>

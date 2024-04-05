@@ -2,6 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function LoginPage() {
+
+    
+
   return (
     <div className='vh-100 vw-100 d-flex flex-column align-items-center' style={{color:'#474443'}}>
         <div className='container-fluid m-5' style={{backgroundColor: '#E2E2E2', maxWidth: '40vw', borderRadius: '10px'}}>
